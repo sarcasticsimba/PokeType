@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Pok&eacute;Type</title>
+    <script type="text/javascript" src="./resources/jquery-1.11.1.min.js"></script>
+</head>
+<body>
+    <header>
+        <span>Pok&eacute;Type</span>
+        <input type="text">
+    </header>
+    
+    <div id="container">
+        <button>Help!</button>
+    </div>
+    
+    <div id="species-container">
+        <!-- This div holds the sprite -->
+        <div id="sprite"></div>
+        
+        <!-- This div will contain the primary typing, a slash, and the secondary typing -->
+        <div id="typing"></div>
+        
+        <!-- This div is for the name -->
+        <div id="species-name"></div>
+
+        <!-- This div will hold the abilities -->
+        <div id="abilities"></div>
+    </div>
+
+    <div id="effectiveness-container">
+        <div id="weak">
+            <span class="effectiveness-header">
+                <ul class="types"></ul>
+            </span>
+        </div>
+        <div id="normal">
+            <span class="effectiveness-header">
+                <ul class="types"></ul>
+            </span>
+        </div>
+        <div id="resists">
+            <span class="effectiveness-header">
+                <ul class="types"></ul>
+            </span>
+        </div>
+        <div id="immune">
+            <span class="effectiveness-header">
+                <ul class="types"></ul>
+            </span>
+        </div>
+    </div>
+    
+</body>
+</html>
