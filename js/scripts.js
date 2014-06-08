@@ -3,76 +3,82 @@ $(document).ready(function() {
     var data;
     var image;
     var types;
-    var typeColors = {
-        Normal:     "#979965",
-        Fire:       "#EA6B25",
-        Fighting:   "#B11D1F",
-        Water:      "#5679EC",
-        Flying:     "#9777EC",
-        Grass:      "#67C13F",
-        Poison:     "#67C13F",
-        Electric:   "#F5C826",
-        Ground:     "#D8B456",
-        Psychic:    "#F43D75",
-        Rock:       "#A9912B",
-        Ice:        "#88D0CF",
-        Bug:        "#98AD1A",
-        Dragon:     "#5C0EF6",
-        Ghost:      "#5C4286",
-        Dark:       "#5C4638",
-        Steel:      "#A9A8C5",
-        Fairy:      "#E8849C"
-    }
-
-    var search = $('#search-field').focus().submit(function(e){e.preventDefault(); return false;}).keypress(function(key) {
-        if(key.which == 13) {
-            $(this).blur();
-            $('#SearchSubmitButton').focus().click();
-        }
-    });
 
     // jQueryUI Elements
-    $('#SearchSubmitButton').button({label:'Submit'}).click(function() {
-        submitSearch(api, search.val());
-    });
+    var search = $('#search-field').focus();
+    $('#SearchSubmitButton').button({label:'Submit'});
 
     $('#HelpButton').button().click(function(){
         $('#help-modal').dialog({ modal: true,
                                   title: 'Help',
                                   width:  500})
     });
+
+    $('.searching').submit(function(e){
+        e.preventDefault();
+        var cb = function(response) {
+            console.log(response);
+    
+            api.apiCall(response.sprites[0].resource_uri, function(reply){
+                $('#sprite').empty().append('<img src="http://pokeapi.co' + reply.image + '" />')
+            });
+    
+            $('#species-name').empty().append(response.name.toUpperCase().split('').join(' '));
+            var abs = [];
+            for(i in response.abilities) {
+                abs.push(capitalizeFirstLetterAndRemoveDashes(response.abilities[i].name));
+            }
+            $('#abilities').empty().append('Abilities: ' + abs.join(', '));
+    
+            assignTypes(response);
+        }
+
+        if(isNaN(parseInt(search.val()))) {
+            api.apiCall('api/v1/pokemon/' + search.val().toLowerCase() + '/', cb);
+        } else {
+            api.apiCall('api/v1/pokemon/' + search.val() + '/', cb);
+        }
+    
+        $('#content').removeAttr('style');
+        $('#intro').hide();
+    });
 });
 
-var submitSearch = function(api, query) {
-    var cb = function(response) {
-        data = response;
-        image = response.sprites[0].resource_uri;
-        console.log(response);
-
-        api.apiCall(image, function(reply){
-            $('#sprite').append('<img src="http://pokeapi.co' + reply.image + '" />')
-        });
-
-        $('#species-name').append(response.name.toUpperCase().split('').join(' '));
-        var abs = [];
-        for(i in response.abilities) {
-            abs.push(capitalizeFirstLetterAndRemoveDashes(response.abilities[i].name));
-        }
-        $('#abilities').append(abs.join(', '))
+function assignTypes(info) {
+    var typeColors = {
+        normal:     "#979965",
+        fire:       "#EA6B25",
+        fighting:   "#B11D1F",
+        water:      "#5679EC",
+        flying:     "#9777EC",
+        grass:      "#67C13F",
+        poison:     "#8D278E",
+        electric:   "#F5C826",
+        ground:     "#D8B456",
+        psychic:    "#F43D75",
+        rock:       "#A9912B",
+        ice:        "#88D0CF",
+        bug:        "#98AD1A",
+        dragon:     "#5C0EF6",
+        ghost:      "#5C4286",
+        dark:       "#5C4638",
+        steel:      "#A9A8C5",
+        fairy:      "#E8849C"
     }
-
-    if(isNaN(parseInt(query))) {
-        api.apiCall('api/v1/pokemon/' + query.toLowerCase() + '/', cb);
+    $('#typing').empty();
+    $('#type1').empty();
+    $('#type2').empty();
+    if(info.types.length == 1) {
+        $('#typing').append('<span id="type1">' + info.types[0].name.toUpperCase() + '</span>');
+        $('#type1').css('color', typeColors[info.types[0].name]);
     } else {
-        api.apiCall('api/v1/pokemon/' + query + '/', cb);
+        $('#typing').append('<span id="type1">' + info.types[0].name.toUpperCase() + '</span> / <span id="type2">' + info.types[1].name.toUpperCase() + '</span>');
+        $('#type1').css('color', typeColors[info.types[0].name]);
+        $('#type2').css('color', typeColors[info.types[1].name]);
     }
-
-    $('#content').removeAttr('style');
-    $('#intro').hide();
 }
 
-function capitalizeFirstLetterAndRemoveDashes(string)
-{
+function capitalizeFirstLetterAndRemoveDashes(string) {
     var s = string.replace(/-/, ' ');
     s = s.split(' ');
     for(i in s) {
