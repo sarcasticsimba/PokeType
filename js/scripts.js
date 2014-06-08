@@ -80,7 +80,7 @@ function buildInfoBox(pkmn, response) {
     $('#abilities').empty().append('Abilities: ');
     for(j in abs) {
         var comma = (j == 0)? '' :', ';
-        $('#abilities').append(comma + '<a href="http://bulbapedia.bulbagarden.net/wiki/'+ abs[j].split(' ').join('_') + '_(Ability)">' + abs[j] + '</a>')
+        $('#abilities').append(comma + '<a onclick="window.open(this.href); return false;" onkeypress="window.open(this.href); return false;" href="http://bulbapedia.bulbagarden.net/wiki/'+ abs[j].split(' ').join('_') + '_(Ability)">' + abs[j] + '</a>')
     }
     
     $('#content').removeAttr('style');
