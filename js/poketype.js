@@ -4,7 +4,7 @@ function Poketype () {
     this.abilities = [];
 }
 
-Poketype.prototype.apiCall = function(uri) {
+Poketype.prototype.apiCall = function(uri, callback) {
     var self = this;
     var endpt = 'http://pokeapi.co/' + uri;
     var obj = $.ajax({
@@ -13,7 +13,7 @@ Poketype.prototype.apiCall = function(uri) {
         'type'          : 'GET',
         'dataType'      : 'jsonp',
         'success'       : function(response) {
-                              self.callSuccess(response);
+                              callback(response);
                           },
         'error'         : function() {
                               self.callFail();
@@ -23,10 +23,10 @@ Poketype.prototype.apiCall = function(uri) {
     return obj;
 };
 
-Poketype.prototype.callSuccess = function(r) {
-    console.log(r);
+Poketype.prototype.callFail = function() {
+    console.log('NOPE');
 };
 
-Poketype.prototype.callFail = function() {
-    console.log('NOPE')
-};
+Poketype.prototype.speciesList = function() {
+    return this.apiCall('api/v1/pokedex/1/');
+}

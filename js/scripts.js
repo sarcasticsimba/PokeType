@@ -10,13 +10,7 @@ $(document).ready(function() {
 
     // jQueryUI Elements
     $('#SearchSubmitButton').button({label:'Submit'}).click(function() {
-        var query = search.val();
-        var data;
-        if(isNaN(parseInt(query))) {
-            data = api.apiCall('api/v1/pokemon/' + query.toLowerCase() + '/');
-        } else {
-            data = api.apiCall('api/v1/pokemon/' + query + '/');
-        }
+        submitSearch(api, search.val());
     });
 
     $('#HelpButton').button().click(function(){
@@ -24,8 +18,17 @@ $(document).ready(function() {
                                   title: 'Help',
                                   width:  500})
     });
+
 });
 
-$.prototype.formSubmit = function(field) {
-
-};
+var submitSearch = function(api, query) {
+    var data;
+    var cb = function(response) {
+        console.log(response);
+    }
+    if(isNaN(parseInt(query))) {
+        data = api.apiCall('api/v1/pokemon/' + query.toLowerCase() + '/', cb);
+    } else {
+        data = api.apiCall('api/v1/pokemon/' + query + '/', cb);
+    }
+}
