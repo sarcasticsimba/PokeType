@@ -4,11 +4,11 @@ function Poketype () {
     this.abilities = [];
 }
 
-Poketype.prototype.apiCall = function(uri, callback) {
+Poketype.prototype.makeApiCall = function(uri, callback) {
     var self = this;
-    var endpt = 'http://pokeapi.co/' + uri;
+    var api_uri = 'http://pokeapi.co/' + uri;
     var obj = $.ajax({
-        'url'           : endpt,
+        'url'           : api_uri,
         'contentType'   : 'application/json',
         'type'          : 'GET',
         'dataType'      : 'jsonp',
