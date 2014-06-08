@@ -1,0 +1,20 @@
+var typeColors = {
+    normal:     "#979965",
+    fire:       "#EA6B25",
+    fighting:   "#B11D1F",
+    water:      "#5679EC",
+    flying:     "#9777EC",
+    grass:      "#67C13F",
+    poison:     "#8D278E",
+    electric:   "#F5C826",
+    ground:     "#D8B456",
+    psychic:    "#F43D75",
+    rock:       "#A9912B",
+    ice:        "#88D0CF",
+    bug:        "#98AD1A",
+    dragon:     "#5C0EF6",
+    ghost:      "#5C4286",
+    dark:       "#5C4638",
+    steel:      "#A9A8C5",
+    fairy:      "#E8849C"
+}

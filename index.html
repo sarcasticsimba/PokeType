@@ -7,12 +7,14 @@
     <link rel="stylesheet" type="text/css" href="./resources/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" href="./resources/jquery-ui-1.10.4.custom.min.css">
     <script type="text/javascript" src="./resources/jquery-1.10.2.js"></script>
-    <script type="text/javascript" src="./resources/jquery-ui-1.10.4.custom.min.js"></script>
+    <!-- <script type="text/javascript" src="./resources/jquery-ui-1.10.4.custom.min.js"></script> -->
+    <script type="text/javascript" src="./resources/jquery-ui-1.10.4.custom.js"></script>
     <!-- <script type="text/javascript" src="./resources/bootstrap.min.js"></script> -->
 
     <!-- My Resources -->
     <link rel="stylesheet" type="text/css" href="./css/styles.css">
     <script type="text/javascript" src="./js/poketype.js"></script>
+    <script type="text/javascript" src="./js/data.js"></script>
     <script type="text/javascript" src="./js/scripts.js"></script>
 </head>
 <body>
@@ -28,7 +30,7 @@
     
     <div class="container-fluid" id="whole-thing">
         <div id="container" class="clearfix">
-            <button id="HelpButton">Help!</button>
+            <button id="HelpButton" title="Have you tried typing in the search bar?">Help!</button>
         </div>
     
     
@@ -93,11 +95,12 @@
             <p>Hello! Welcome to Pok&eacute;Type! Are you in a battle and suddenly blanking on what the opponent's
                type is? Just enter the foe's name or National Dex number in the search bar! Or, you can search
                through the dropdown. For questions, contact me at
-               <a href="mailto:vigneshk14@yahoo.com?subject=PokeTypeHelp">vigneshk14@me.com</a>.</p>
-                <!-- <p>
-                    <label for="spinner">Select a Pok&eacute;mon:</label>
-                    <input id="spinner" name="value">
-                </p> -->
+               <a href="mailto:vigneshk14@me.com?subject=PokeTypeHelp">vigneshk14@me.com</a>.</p>
+            <form>
+                <select>
+                    <option value="" selected="selected">Pok&eacute;mon name</option>
+                </select>
+            </form>
         </div>
     </div>
 </body>

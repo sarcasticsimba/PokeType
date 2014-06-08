@@ -1,70 +1,81 @@
 $(document).ready(function() {
-    var api = new Poketype();
+    var pkmn = new Poketype();
     var data;
     var image;
     var types;
 
+    populateSelect(pkmn);
+
     // jQueryUI Elements
     var search = $('#search-field').focus();
+
     $('#SearchSubmitButton').button({label:'Submit'});
 
     $('#HelpButton').button().click(function(){
         $('#help-modal').dialog({ modal: true,
                                   title: 'Help',
-                                  width:  500})
+                                  width:  500});
+        $(this).blur();
+    }).tooltip({
+        show: null,
+        position: {
+        my: "left top",
+        at: "left bottom"},
+        open: function( event, ui ) {
+            ui.tooltip.animate({ top: ui.tooltip.position().top + 10 }, "fast" );
+        }
     });
 
     $('.searching').submit(function(e){
         e.preventDefault();
         var cb = function(response) {
-            console.log(response);
-    
-            api.apiCall(response.sprites[0].resource_uri, function(reply){
-                $('#sprite').empty().append('<img src="http://pokeapi.co' + reply.image + '" />')
-            });
-    
-            $('#species-name').empty().append(response.name.toUpperCase().split('').join(' '));
-            var abs = [];
-            for(i in response.abilities) {
-                abs.push(capitalizeFirstLetterAndRemoveDashes(response.abilities[i].name));
-            }
-            $('#abilities').empty().append('Abilities: ' + abs.join(', '));
-    
-            assignTypes(response);
+            buildInfoBox(pkmn, response);
         }
 
         if(isNaN(parseInt(search.val()))) {
-            api.apiCall('api/v1/pokemon/' + search.val().toLowerCase() + '/', cb);
+            pkmn.apiCall('api/v1/pokemon/' + search.val().toLowerCase() + '/', cb);
         } else {
-            api.apiCall('api/v1/pokemon/' + search.val() + '/', cb);
+            pkmn.apiCall('api/v1/pokemon/' + search.val() + '/', cb);
         }
-    
-        $('#content').removeAttr('style');
-        $('#intro').hide();
+    });
+
+    $('select').on('change', function(){
+        pkmn.apiCall('api/v1/pokemon/' + $(this).val() + '/', function(response){
+            $('#help-modal').dialog('close');
+            $('#HelpButton').blur();
+            buildInfoBox(pkmn, response);
+        });
     });
 });
 
-function assignTypes(info) {
-    var typeColors = {
-        normal:     "#979965",
-        fire:       "#EA6B25",
-        fighting:   "#B11D1F",
-        water:      "#5679EC",
-        flying:     "#9777EC",
-        grass:      "#67C13F",
-        poison:     "#8D278E",
-        electric:   "#F5C826",
-        ground:     "#D8B456",
-        psychic:    "#F43D75",
-        rock:       "#A9912B",
-        ice:        "#88D0CF",
-        bug:        "#98AD1A",
-        dragon:     "#5C0EF6",
-        ghost:      "#5C4286",
-        dark:       "#5C4638",
-        steel:      "#A9A8C5",
-        fairy:      "#E8849C"
+function buildInfoBox(pkmn, response) {
+    pkmn.species = response.name;
+    pkmn.typing = response.types;
+    pkmn.abilities = response.abilities;
+
+    pkmn.apiCall(response.sprites[0].resource_uri, function(reply){
+        $('#sprite').empty().append('<img src="http://pokeapi.co' + reply.image + '" />')
+    });
+    $('#species-name').empty().append(response.name.toUpperCase().split('').join(' '));
+    var abs = [];
+    for(i in response.abilities) {
+        abs.push(capitalizeFirstLetterAndRemoveDashes(response.abilities[i].name));
     }
+    $('#abilities').empty().append('Abilities: ' + abs.join(', '));
+    $('#content').removeAttr('style');
+    $('#intro').hide();
+    assignTypes(response);
+}
+
+function populateSelect(pkmn){
+    pkmn.apiCall('api/v1/pokedex/1/', function(response){
+        for(i in response.pokemon) {
+            $('select').append('<option value="' + response.pokemon[i].name + '">' + capitalizeFirstLetterAndRemoveDashes(response.pokemon[i].name) + '</option>');   
+        }
+    });
+}
+
+function assignTypes(info) {
     $('#typing').empty();
     $('#type1').empty();
     $('#type2').empty();

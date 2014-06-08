@@ -28,6 +28,7 @@ body {
     color: #fff;
     margin-bottom: 50px;
     overflow: auto;
+    padding: 10px 0 10px 0;
 }
 
 #sprite {
