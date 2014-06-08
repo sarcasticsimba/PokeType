@@ -32,59 +32,64 @@
         </div>
     
     
-        <div class="row">
+        <div id="intro" class="center-content">
             <div class="col-md-3"></div>
-            <div id="species-container" class="row col-md-6">
-                <!-- This div holds the sprite -->
-                <div id="sprite" class="col-md-6">
-                    <img src="http://pokeapi.co/media/img/376.png" />
-                </div>
-        
-        
-                <div id="pkmn-info" class="col-md-6">
-                    <!-- This div will contain the primary typing, a slash, and the     secondary typing -->
-                    <div id="typing">
-                        <span id="type1">STEEL</span> / <span id="type2">PSYCHIC</span>
-                    </div>
-                    
-                    <!-- This div is for the name -->
-                    <div id="species-name">
-                        M E T A G R O S S
-                    </div>
-            
-                    <!-- This div will hold the abilities -->
-                    <div id="abilities">
-                        Abilities: Clear Body, Light Metal
-                    </div>
-                </div>
+            <div class="col-md-6">
+                <h1>Welcome to Pok&eacute;Type!</h1>
+                <p>Type the name or National Dex number of a Pok&eacute;mon in the search box to get started!</p>
             </div>
             <div class="col-md-3"></div>
         </div>
-    
-        <div id="effectiveness-container" class="row">
-            <div id="weak"  class="col-md-3">
-                <span class="effectiveness-header">
-                    Is weak to...
-                </span>
-                <ul class="types"></ul>
+        <div id="content" style="display:none" >
+            <div class="row">
+                <div class="col-md-3"></div>
+                <div id="species-container" class="row col-md-6">
+                    <!-- This div holds the sprite -->
+                    <div id="sprite" class="col-md-6"></div>
+            
+                    <div id="pkmn-info" class="col-md-6">
+                        <!-- This div will contain the primary typing, a slash, and the     secondary typing -->
+                        <div id="typing">
+                            <!-- <span id="type1">STEEL</span> / <span id="type2">PSYCHIC</span> -->
+                        </div>
+                        
+                        <!-- This div is for the name -->
+                        <div id="species-name"></div>
+                
+                        <!-- This div will hold the abilities -->
+                        <div id="abilities">
+                            Abilities: 
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3"></div>
             </div>
-            <div id="normal" class="col-md-3">
-                <span class="effectiveness-header">
-                    Is normally damaged by...
-                </span>
-                <ul class="types"></ul>
-            </div>
-            <div id="resists" class="col-md-3">
-                <span class="effectiveness-header">
-                    Resists...
-                </span>
-                <ul class="types"></ul>
-            </div>
-            <div id="immune" class="col-md-3">
-                <span class="effectiveness-header">
-                    Is immune to...
-                </span>
-                <ul class="types"></ul>
+        
+            <div id="effectiveness-container" class="row">
+                <div id="weak"  class="col-md-3">
+                    <span class="effectiveness-header">
+                        Is weak to...
+                    </span>
+                    <ul class="types"></ul>
+                </div>
+                <div id="normal" class="col-md-3">
+                    <span class="effectiveness-header">
+                        Is normally damaged by...
+                    </span>
+                    <ul class="types"></ul>
+                </div>
+                <div id="resists" class="col-md-3">
+                    <span class="effectiveness-header">
+                        Resists...
+                    </span>
+                    <ul class="types"></ul>
+                </div>
+                <div id="immune" class="col-md-3">
+                    <span class="effectiveness-header">
+                        Is immune to...
+                    </span>
+                    <ul class="types"></ul>
+                </div>
             </div>
         </div>
 

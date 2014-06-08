@@ -27,6 +27,7 @@ body {
     border-radius: 10px; 
     color: #fff;
     margin-bottom: 50px;
+    overflow: auto;
 }
 
 #sprite {
@@ -59,4 +60,13 @@ body {
     font-weight: bold;
     font-size: 20px;
     text-decoration: underline;
+}
+
+#intro {
+    background-color: #88A0AF;
+    -moz-border-radius: 10px;
+    -webkit-border-radius: 10px;
+    border-radius: 10px; 
+    color: #fff;
+    margin-bottom: 50px;
 }

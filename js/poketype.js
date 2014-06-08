@@ -1,5 +1,6 @@
 function Poketype () {
     this.species;
+    this.image;
     this.typing = [];
     this.abilities = [];
 }
