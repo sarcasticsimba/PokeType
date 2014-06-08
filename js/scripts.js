@@ -61,7 +61,13 @@ function buildInfoBox(pkmn, response) {
     for(i in response.abilities) {
         abs.push(capitalizeFirstLetterAndRemoveDashes(response.abilities[i].name));
     }
-    $('#abilities').empty().append('Abilities: ' + abs.join(', '));
+
+    $('#abilities').empty().append('Abilities: ');
+    for(j in abs) {
+        var comma = (j == 0)? '' :', ';
+        $('#abilities').append(comma + '<a href="http://bulbapedia.bulbagarden.net/wiki/'+ abs[j].split(' ').join('_') + '_(Ability)">' + abs[j] + '</a>')
+    }
+    
     $('#content').removeAttr('style');
     $('#intro').hide();
     assignTypes(response);

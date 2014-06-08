@@ -6,6 +6,16 @@ nav {
     margin-top: -3px;
 }
 
+a {
+    color: #4F505A;
+    font-weight: bold;
+    text-decoration: underline;
+}
+
+a:visited {
+    color: #bbb;
+}
+
 #brand {
     font-size: 24px;
     font-weight: bold;

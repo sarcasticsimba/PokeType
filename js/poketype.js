@@ -14,17 +14,10 @@ Poketype.prototype.makeApiCall = function(uri, callback) {
         'dataType'      : 'jsonp',
         'success'       : function(response) {
                               callback(response);
-                          },
-        'error'         : function() {
-                              self.callFail();
                           }
     });
 
     return obj;
-};
-
-Poketype.prototype.callFail = function() {
-    console.log('NOPE');
 };
 
 Poketype.prototype.speciesList = function() {
