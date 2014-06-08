@@ -112,7 +112,7 @@ function calculateTypeEffectiveness(pkmn, response) {
         }
     }
 
-// Checking for x4
+// // Checking for x4
     for (var i = 0; i < weaknesses.twox.length - 1; i++) {
         if (weaknesses.twox[i] == weaknesses.twox[i+1]) {
             weaknesses.fourx.push(weaknesses.twox[i]);
@@ -124,7 +124,7 @@ function calculateTypeEffectiveness(pkmn, response) {
         }
     }
 
-// Checking for x0.25
+// // Checking for x0.25
     for (var i = 0; i < weaknesses.halfx.length - 1; i++) {
         if (weaknesses.halfx[i] == weaknesses.halfx[i+1]) {
             weaknesses.qtrx.push(weaknesses.halfx[i]);
@@ -136,7 +136,7 @@ function calculateTypeEffectiveness(pkmn, response) {
         }
     }
 
-// Checking x2 versus x0.5
+// // Checking x2 versus x0.5
     var tmp = [];
     for(i in weaknesses.twox) {
         if(weaknesses.halfx.indexOf(weaknesses.twox[i]) !== -1) {
@@ -149,9 +149,22 @@ function calculateTypeEffectiveness(pkmn, response) {
         weaknesses.twox.splice(weaknesses.twox.indexOf(tmp[i]), 1);
     }
 
-// Sort and remove duplicates from x1
+// // Sort and remove duplicates from x1
     weaknesses.onex.sort();
     weaknesses.onex = removeDuplicates(weaknesses.onex);
+
+// // Remove stuff from x1 that's in other columns
+    for(i in weaknesses){
+        if(weaknesses[i] !== weaknesses.onex){
+            for(j in weaknesses[i]){
+                if(weaknesses.onex.indexOf(weaknesses[i][j]) !== -1){
+                    weaknesses.onex.splice(weaknesses.onex.indexOf(weaknesses[i][j]), 1);
+                }
+            }
+        }
+    }
+
+
 
     $('#super').empty();
     $('#normal').empty();
