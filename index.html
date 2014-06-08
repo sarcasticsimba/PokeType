@@ -2,54 +2,102 @@
 <html>
 <head>
     <title>Pok&eacute;Type</title>
-    <script type="text/javascript" src="./resources/jquery-1.11.1.min.js"></script>
+
+    <!-- Imported Resources -->
+    <link rel="stylesheet" type="text/css" href="./resources/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="./resources/jquery-ui-1.10.4.custom.min.css">
+    <script type="text/javascript" src="./resources/jquery-1.10.2.js"></script>
+    <script type="text/javascript" src="./resources/jquery-ui-1.10.4.custom.min.js"></script>
+    <!-- <script type="text/javascript" src="./resources/bootstrap.min.js"></script> -->
+
+    <!-- My Resources -->
+    <link rel="stylesheet" type="text/css" href="./css/styles.css">
+    <script type="text/javascript" src="./js/poketype.js"></script>
+    <script type="text/javascript" src="./js/scripts.js"></script>
 </head>
 <body>
-    <header>
-        <span>Pok&eacute;Type</span>
-        <input type="text">
-    </header>
+    <nav class="navbar navbar-default" role="navigation" style="padding: 0 10px 0 0">
+        <a class="navbar-brand" id="brand" href="#">Pok&eacute;Type</a>
+        <form class="navbar-form navbar-right" role="search">
+            <div class="form-group">
+                <input type="text" id="search-field" class="form-control" placeholder="Species or Dex #">
+            </div>
+            <input type="button" id="SearchSubmitButton" />
+        </form>
+    </nav>
     
-    <div id="container">
-        <button>Help!</button>
-    </div>
+    <div class="container-fluid" id="whole-thing">
+        <div id="container" class="clearfix">
+            <button id="HelpButton">Help!</button>
+        </div>
     
-    <div id="species-container">
-        <!-- This div holds the sprite -->
-        <div id="sprite"></div>
+    
+        <div class="row">
+            <div class="col-md-3"></div>
+            <div id="species-container" class="row col-md-6">
+                <!-- This div holds the sprite -->
+                <div id="sprite" class="col-md-6">
+                    <img src="http://pokeapi.co/media/img/376.png" />
+                </div>
         
-        <!-- This div will contain the primary typing, a slash, and the secondary typing -->
-        <div id="typing"></div>
         
-        <!-- This div is for the name -->
-        <div id="species-name"></div>
-
-        <!-- This div will hold the abilities -->
-        <div id="abilities"></div>
-    </div>
-
-    <div id="effectiveness-container">
-        <div id="weak">
-            <span class="effectiveness-header">
-                <ul class="types"></ul>
-            </span>
+                <div id="pkmn-info" class="col-md-6">
+                    <!-- This div will contain the primary typing, a slash, and the     secondary typing -->
+                    <div id="typing">
+                        <span id="type1">STEEL</span> / <span id="type2">PSYCHIC</span>
+                    </div>
+                    
+                    <!-- This div is for the name -->
+                    <div id="species-name">
+                        M E T A G R O S S
+                    </div>
+            
+                    <!-- This div will hold the abilities -->
+                    <div id="abilities">
+                        Abilities: Clear Body, Light Metal
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3"></div>
         </div>
-        <div id="normal">
-            <span class="effectiveness-header">
-                <ul class="types"></ul>
-            </span>
-        </div>
-        <div id="resists">
-            <span class="effectiveness-header">
-                <ul class="types"></ul>
-            </span>
-        </div>
-        <div id="immune">
-            <span class="effectiveness-header">
-                <ul class="types"></ul>
-            </span>
-        </div>
-    </div>
     
+        <div id="effectiveness-container" class="row">
+            <div id="weak"  class="col-md-3">
+                <span class="effectiveness-header">
+                    Is weak to...
+                </span>
+                <ul class="types"></ul>
+            </div>
+            <div id="normal" class="col-md-3">
+                <span class="effectiveness-header">
+                    Is normally damaged by...
+                </span>
+                <ul class="types"></ul>
+            </div>
+            <div id="resists" class="col-md-3">
+                <span class="effectiveness-header">
+                    Resists...
+                </span>
+                <ul class="types"></ul>
+            </div>
+            <div id="immune" class="col-md-3">
+                <span class="effectiveness-header">
+                    Is immune to...
+                </span>
+                <ul class="types"></ul>
+            </div>
+        </div>
+
+        <div id="help-modal" style="display:none">
+            <p>Hello! Welcome to Pok&eacute;Type! Are you in a battle and suddenly blanking on what the opponent's
+               type is? Just enter the foe's name or National Dex number in the search bar! Or, you can search
+               through the dropdown. For questions, contact me at
+               <a href="mailto:vigneshk14@yahoo.com?subject=PokeTypeHelp">vigneshk14@me.com</a>.</p>
+                <!-- <p>
+                    <label for="spinner">Select a Pok&eacute;mon:</label>
+                    <input id="spinner" name="value">
+                </p> -->
+        </div>
+    </div>
 </body>
 </html>
