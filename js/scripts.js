@@ -1,22 +1,31 @@
+/*
+    Main script to PokéType:
+        - Constructs and populates elements on:
+            - load (dropdown)
+            - form submission (text field, search button, dropdown,
+              Pokémon info and type calculations)
+            - button click (creates the modal)
+        - Contains some helper functions to make the $(document).ready() function
+          slightly more readable
+
+    Vignesh Kalidas, 2014
+*/
+
 $(document).ready(function() {
     var pkmn = new Poketype();
-    var data;
-    var image;
-    var types;
 
     populateSelect(pkmn);
 
-    // jQueryUI Elements
     var search = $('#search-field').focus();
 
-    $('#SearchSubmitButton').button({label:'Submit'});
+    $('#SearchSubmitButton').button({label:'Submit'});      // This is a JQueryUI widget
 
-    $('#HelpButton').button().click(function(){
-        $('#help-modal').dialog({ modal: true,
+    $('#HelpButton').button().click(function(){             // This is a JQueryUI widget
+        $('#help-modal').dialog({ modal: true,              // This is a JQueryUI widget
                                   title: 'Help',
                                   width:  500});
         $(this).blur();
-    }).tooltip({
+    }).tooltip({                                            // This is a JQueryUI widget
         show: null,
         position: {
         my: "left top",
@@ -32,6 +41,7 @@ $(document).ready(function() {
             buildInfoBox(pkmn, response);
         }
 
+        // Getting the pokemon info via an API call
         if(isNaN(parseInt(search.val()))) {
             pkmn.makeApiCall('api/v1/pokemon/' + search.val().toLowerCase() + '/', cb);
         } else {
@@ -39,6 +49,7 @@ $(document).ready(function() {
         }
     });
 
+    // Getting the pokemon info from a dropdown menu via an API call
     $('select').on('change', function(){
         pkmn.makeApiCall('api/v1/pokemon/' + $(this).val() + '/', function(response){
             $('#help-modal').dialog('close');
@@ -48,11 +59,15 @@ $(document).ready(function() {
     });
 });
 
+/*-------------------------- END of $('document').ready(...) --------------------------*/
+/*-------------------------- Helper functions below -----------------------------------*/
+
 function buildInfoBox(pkmn, response) {
     pkmn.species = response.name;
     pkmn.typing = response.types;
     pkmn.abilities = response.abilities;
 
+    // Getting the sprite via an API call
     pkmn.makeApiCall(response.sprites[0].resource_uri, function(reply){
         $('#sprite').empty().append('<img src="http://pokeapi.co' + reply.image + '" />')
     });
@@ -170,8 +185,6 @@ function calculateTypeEffectiveness(pkmn, response) {
         }
     }
 
-
-
     $('#super').empty();
     $('#normal').empty();
     $('#not-very').empty();
@@ -215,8 +228,8 @@ var removeDuplicates = function(arr) {
     return newarray;
 }
 
-
 function populateSelect(pkmn){
+    // Filling the dropdown menu with an API call to /pokedex/1/
     pkmn.makeApiCall('api/v1/pokedex/1/', function(response){
         for(i in response.pokemon) {
             $('select').append('<option value="' + response.pokemon[i].name + '">' + capitalizeFirstLetterAndRemoveDashes(response.pokemon[i].name) + '</option>');   

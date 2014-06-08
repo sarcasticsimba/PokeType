@@ -1,8 +1,15 @@
-function Poketype () {
-    this.species;
-    this.typing = [];
-    this.abilities = [];
-}
+/*
+    PokéType Object has two useful functions:
+        - makeApiCall() takes parameters:
+            - URI to make an AJAX call to make resource-grabbing simpler
+            - Callback function to perform some action on the retrieved data
+        - speciesList() takes no parameters and returns the resource provided by
+          a GET call to the pokedex part of the API
+
+    Vignesh Kalidas, 2014
+*/
+
+function Poketype () {}
 
 Poketype.prototype.makeApiCall = function(uri, callback) {
     var self = this;

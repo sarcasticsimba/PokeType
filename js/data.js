@@ -1,3 +1,11 @@
+/*
+    data.js contains useful objects:
+        - Hex color code associated with each type
+        - Type effectiveness for every type
+
+    Vignesh Kalidas, 2014
+*/
+
 var typeColors = {
     normal      :   "#979965",
     fire        :   "#EA6B25",
