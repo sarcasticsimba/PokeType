@@ -4,8 +4,9 @@
     Vignesh Kalidas, 2014
 */
 
-body {
+html, body {
     background-color: #4F505A;
+    overflow: hidden;
 }
 
 nav {
