@@ -18,23 +18,6 @@ $(document).ready(function() {
 
     var search = $('#search-field').focus();
 
-    $('#SearchSubmitButton').button({label:'Submit'});      // This is a JQueryUI widget
-
-    $('#HelpButton').button().click(function(){             // This is a JQueryUI widget
-        $('#help-modal').dialog({ modal: true,              // This is a JQueryUI widget
-                                  title: 'Help',
-                                  width:  500});
-        $(this).blur();
-    }).tooltip({                                            // This is a JQueryUI widget
-        show: null,
-        position: {
-        my: "left top",
-        at: "left bottom"},
-        open: function( event, ui ) {
-            ui.tooltip.animate({ top: ui.tooltip.position().top + 10 }, "fast" );
-        }
-    });
-
     $('.searching').submit(function(e){
         e.preventDefault();
         var cb = function(response) {

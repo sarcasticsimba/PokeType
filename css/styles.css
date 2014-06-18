@@ -6,7 +6,7 @@
 
 html, body {
     background-color: #4F505A;
-    overflow: hidden;
+    overflow-x: hidden;
 }
 
 nav {
