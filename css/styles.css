@@ -78,13 +78,6 @@ a:visited {
     text-decoration: underline;
 }
 
-.effectiveness-holder {
-    background-color: #88A0AF;
-    -moz-border-radius: 10px;
-    -webkit-border-radius: 10px;
-    border-radius: 10px; 
-}
-
 #intro {
     background-color: #88A0AF;
     -moz-border-radius: 10px;
