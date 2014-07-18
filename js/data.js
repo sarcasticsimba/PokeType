@@ -6,6 +6,59 @@
     Vignesh Kalidas, 2014
 */
 
+Array.prototype.removeMatchingElementsFrom = function(arr) {
+    for(i in arr) {
+        for(var j = 0; j < this.length; j++) {
+            if(this[j] === arr[i]) {
+                this.splice(j, 1)
+                j--
+            }
+        }
+    }
+};
+
+Array.prototype.pushDuplicatesTo = function(arr) {
+    this.sort();
+
+    for(i in this) {
+        if (this[i] === this[parseInt(i)+1]) {
+            arr.push(this[i]);
+        }
+    }
+};
+
+Array.prototype.removeDuplicates = function() {
+    var newarray = [], initLength = this.length, found, x, y;
+
+    for (x = 0; x < initLength; x++) {
+        found = undefined;
+        for (y = 0; y < newarray.length; y++) {
+            if (this[x] === newarray[y]) {
+                found = true;
+                break;
+            }
+        }
+        if (!found) {
+            newarray.push(this[x]);
+        }
+    }
+
+    return newarray;
+}
+
+Array.removeMatchingElementsAndStoreIn = function(one, two, store) {
+    for(var i = 0; i < one.length; i++) {
+        var elm = two.indexOf(one[i]);
+        if(elm !== -1) {
+            store.push(two[elm]);
+            two.splice(elm, 1);
+
+            one.splice(i, 1);
+            i--;
+        }
+    }
+}
+
 var typeColors = {
     normal      :   "#979965",
     fire        :   "#EA6B25",
@@ -26,6 +79,25 @@ var typeColors = {
     steel       :   "#A9A8C5",
     fairy       :   "#E8849C"
 }
+
+var typesList = ['normal',
+                 'fire',
+                 'fighting',
+                 'water',
+                 'flying',
+                 'grass',
+                 'poison',
+                 'electric',
+                 'ground',
+                 'psychic',
+                 'rock',
+                 'ice',
+                 'bug',
+                 'dragon',
+                 'ghost',
+                 'dark',
+                 'steel',
+                 'fairy']
 
 var effectiveness = {
     normal      : {
