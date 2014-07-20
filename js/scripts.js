@@ -38,6 +38,7 @@ function buildInfoBox(pkmn, response) {
     pkmn.species = response.name;
     pkmn.typing = response.types;
     pkmn.abilities = response.abilities;
+    pkmn.stats = [response.speed, response.sp_def, response.sp_atk, response.defense, response.attack, response.hp];
 
     // Getting the sprite via an API call
     pkmn.makeApiCall(response.sprites[0].resource_uri, function(reply){
@@ -57,8 +58,44 @@ function buildInfoBox(pkmn, response) {
     
     $('#content').removeAttr('style');
     $('#intro').hide();
+
+    initializeStatsChart(pkmn.stats);
+
     assignTypes(response);
     calculateTypeEffectiveness(pkmn, response);
+}
+
+function initializeStatsChart(stats) {
+    $('#graph').removeAttr('style');
+
+    var chart = {
+        labels : [ 'Speed', 'Sp.Def', 'Sp.Atk', 'Defense', 'Attack', 'HP' ],
+        datasets : [
+            {
+                fillColor : "rgba(246, 246, 246, 0.8)",
+                strokeColor : "rgba(246, 246, 246, 1)",
+                pointColor : "rgba(246, 246, 246, 1)",
+                pointstrokeColor : "black",
+                data : stats
+            }
+        ]
+    }               
+    
+    var options = {
+        animationStartWithDataset : 1,
+        animationStartWithData : 1,
+        animationSteps : 75,
+        canvasBorders : true,
+        canvasBordersWidth : 0,
+        canvasBordersColor : "black",
+        graphTitle : "",
+        legend : false,
+        inGraphDataShow : false,
+        annotateDisplay : false,
+        graphTitleFontSize: 0
+    }
+
+    var base_stats = new Chart($("#graph").get(0).getContext("2d")).HorizontalBar(chart,options);
 }
 
 function calculateTypeEffectiveness(pkmn, response) {

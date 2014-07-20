@@ -19,6 +19,7 @@
     <!-- Imported Resources -->
     <link rel="stylesheet" type="text/css" href="./resources/bootstrap.min.css">
     <script type="text/javascript" src="./resources/jquery-1.11.1.min.js"></script>
+    <script type="text/javascript" src="./resources/ChartNew.js"></script>
 
     <!-- My Resources -->
     <link rel="stylesheet" type="text/css" href="./css/styles.css">
@@ -35,15 +36,11 @@
             <div class="form-group">
                 <input type="text" id="search-field" class="form-control" placeholder="Species or Dex #" title>
             </div>
-            <!-- <button class="btn btn-default" type="button" id="SearchSubmitButton">Go!</button> -->
         </form>
     </nav>
     
     <div class="container-fluid" id="whole-thing">
-        <!-- <div id="container" class="clearfix">
-            <button id="HelpButton" title="Have you tried typing in the search bar?">Help!</button>
-        </div> -->
-    
+
         <!-- INTRO TEXT - DISAPPEARS AFTER INITIAL PAGE USE -->
         <div id="intro" class="center-content">
             <div class="col-md-3"></div>
@@ -56,12 +53,12 @@
         <div id="content" style="display:none" >
             <!-- POKEMON INFO BOX -->
             <div class="row">
-                <div class="col-md-3"></div>
-                <div id="species-container" class="row col-md-6">
+                <div class="col-md-1"></div>
+                <div id="species-container" class="row col-md-10">
                     <!-- This div holds the sprite -->
-                    <div id="sprite" class="col-md-5"></div>
+                    <div id="sprite" class="col-md-3"></div>
             
-                    <div id="pkmn-info" class="col-md-7">
+                    <div id="pkmn-info" class="col-md-6">
                         <!-- This div will contain the primary typing, a slash, and the     secondary typing -->
                         <div id="typing"></div>
                         
@@ -71,8 +68,11 @@
                         <!-- This div will hold the abilities -->
                         <div id="abilities"></div>
                     </div>
+
+                    <canvas id="graph" height="200" width="400" style="display:none;" class="col-md-3"></canvas>
+
                 </div>
-                <div class="col-md-3"></div>
+                <div class="col-md-1"></div>
             </div>
         
             <!-- TYPE EFFECTIVENESS BLOB -->
@@ -103,13 +103,6 @@
                 </div>
             </div>
         </div>
-
-        <!-- <form>
-            <span style="font-weight:bold">Can't find what you're looking for?</span>
-            <select>
-                <option value="" selected="selected">Pok&eacute;mon name</option>
-            </select>
-        </form> -->
     </div>
 </body>
 </html>
