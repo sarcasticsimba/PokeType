@@ -30,10 +30,10 @@ $(document).ready(function() {
         }
     });
 });
-
 /*-------------------------- END of $('document').ready(...) --------------------------*/
-/*-------------------------- Helper functions below -----------------------------------*/
 
+
+/*-------------------------- Helper functions below -----------------------------------*/
 function buildInfoBox(pkmn, response) {
     pkmn.species = response.name;
     pkmn.typing = response.types;
